@@ -1,4 +1,4 @@
-## Github instructions and Git Controls
+## SafeSpace instructions and SafeSpace Git Controls
 
 Starting the repo:
 
