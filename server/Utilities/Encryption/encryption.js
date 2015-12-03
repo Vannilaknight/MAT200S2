@@ -1,11 +1,5 @@
 var bigInt = require('big-integer');
 
-var numMessage = [];
-
-for (var i = 0, len = message.length; i < len; i++) {
-    numMessage.push(message.charCodeAt(i));
-}
-
 var RSA = {};
 
 RSA.generate = function () {
