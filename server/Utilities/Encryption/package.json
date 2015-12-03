@@ -1,0 +1,14 @@
+{
+  "name": "encryption",
+  "version": "1.0.0",
+  "description": "encrypt",
+  "main": "encryption.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Taylor Boyd",
+  "license": "ISC",
+  "dependencies": {
+    "big-integer": "^1.6.8"
+  }
+}

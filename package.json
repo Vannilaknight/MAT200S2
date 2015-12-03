@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Vannilaknight/MAT200S2/issues"
   },
-  "homepage": "https://github.com/Vannilaknight/MAT200S2#readme"
+  "homepage": "https://github.com/Vannilaknight/MAT200S2#readme",
+  "dependencies": {
+    "encryption": "file:server\\Utilities\\Encryption"
+  }
 }
