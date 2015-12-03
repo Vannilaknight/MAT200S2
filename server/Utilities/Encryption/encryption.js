@@ -61,26 +61,11 @@ RSA.generate = function () {
 };
 
 RSA.encrypt = function (m, n, e) {
-    var fullMessage = '';
-    for(var x = 0; x < m.length; x++){
-        fullMessage += String.fromCharCode(bigInt(m[x]).pow(e).mod(n));
-    }
-    return fullMessage;
+    return bigInt(m).pow(e).mod(n);
 };
 
 RSA.decrypt = function (mEnc, d, n) {
-    var decyptedNums = [];
-
-    for (var k = 0, len = mEnc.length; k < len; k++) {
-        decyptedNums.push(mEnc.charCodeAt(k));
-    }
-
-    var fullMessage = '';
-    for(var x = 0; x < decyptedNums.length; x++){
-        fullMessage += String.fromCharCode(bigInt(decyptedNums[x]).pow(d).mod(n));
-    }
-
-    return fullMessage;
+    return bigInt(mEnc).pow(d).mod(n);
 };
 
 module.exports = RSA;
