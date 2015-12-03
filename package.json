@@ -1,0 +1,19 @@
+{
+  "name": "safespace",
+  "version": "1.0.0",
+  "description": "Better than the cloud",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vannilaknight/MAT200S2.git"
+  },
+  "author": "Taylor Boyd, Jadon Leininger, Neal Byington, Wayne Maree, Andrew Later, Kelsey StClair, Brennen Heinrich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vannilaknight/MAT200S2/issues"
+  },
+  "homepage": "https://github.com/Vannilaknight/MAT200S2#readme"
+}
