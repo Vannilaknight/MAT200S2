@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Vannilaknight/MAT200S2#readme",
   "dependencies": {
-    "encryption": "file:server\\Utilities\\Encryption"
+    "encryption": "file:server\\Utilities\\Encryption",
+    "express": "^4.13.3"
   }
 }
