@@ -1,4 +1,5 @@
-var fileManager = require('../Utilities/fileManager');
+var fileManager = require('../Utilities/fileManager')
+    routes = require('../Controllers/Routing.js');
 
 module.exports = function(app) {
     app.get('/', function(req, res) {
@@ -13,4 +14,10 @@ module.exports = function(app) {
            });
         });
     });
+
+    app.get('/user/:id', routes.index);
+    app.get('/login', routes.login);
+    app.post('/login', routes.loginPost);
+    app.get('/logout', routes.logout);
+    app.get('/', routes.index);
 };
