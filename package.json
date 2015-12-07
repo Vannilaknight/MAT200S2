@@ -17,6 +17,11 @@
   },
   "homepage": "https://github.com/Vannilaknight/MAT200S2#readme",
   "dependencies": {
-    "encryption": "file:server\\Utilities\\Encryption"
+    "body-parser": "^1.14.1",
+    "connect-busboy": "0.0.2",
+    "ejs": "^2.3.4",
+    "encryption": "file:server\\Utilities\\Encryption",
+    "express": "^4.13.3",
+    "mkdirp": "^0.5.1"
   }
 }
