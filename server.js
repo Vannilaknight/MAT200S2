@@ -1,5 +1,5 @@
-var express = require('express'),
-    routes = require('./server/Routes/routes.js');
+var express = require('express');
+    //routes = require('./server/Routes/routes.js');
 
 var app = express();
 
@@ -15,7 +15,7 @@ dbTests.testNewUser();
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-var app = express();
+//var app = express();
 
 var config = require('./server/config/config')[env];
 
