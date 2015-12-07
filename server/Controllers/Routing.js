@@ -1,6 +1,3 @@
-//will be fleshed out later when access to db and stuff is available
-//need to add user creation, edit, deletion at later date
-
 exports.index = function(req, res){
     res.send('Index page');
 }
