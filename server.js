@@ -8,28 +8,10 @@ var num = 1435;
 var mongoose = require('mongoose');
 var dbConfig = require('./dbConfig');
 mongoose.connect(dbConfig.url);
-var User = require('./Schemas/User');
 
-//var u = new User({
-//    id: '12',
-//    firstName:"test",
-//    lastName:"tester",
-//    email:"test@test.test",
-//    username:"test",
-//    password:"pass123",
-//    FileDirectory:"null"
-//})
-//
-//u.save(function(err){
-//    if(err){
-//        console.log(err);
-//    }
-//});
+var dbTests = require('./Tests/dbTests');
+dbTests.testNewUser();
 
-User.find(function(err, user){
-    if(err){console.log(err);}
-    console.log(user);
-});
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
