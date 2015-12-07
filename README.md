@@ -1,3 +1,11 @@
+# BE SURE TO INSTALL MODULES
+When pulling new code, be sure to install all of the modules, even if you did at the beginning.
+
+```
+npm install
+```
+This will install all node modules added by any other memebers (provided they did `--save` when installing modules)
+
 ## Encryption Node Module
 
 First load the module into your node application:
