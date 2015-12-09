@@ -1,21 +1,14 @@
-var express = require('express');
-    //routes = require('./server/Routes/routes.js');
+var express = require('express'),
+    routes = require('./server/Routes/routes.js');
 
 var app = express();
 
 var RSA = require('encryption');
 var num = 1435;
-var mongoose = require('mongoose');
-var dbConfig = require('./dbConfig');
-mongoose.connect(dbConfig.url);
-
-var dbTests = require('./Tests/dbTests');
-dbTests.testNewUser();
-
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-//var app = express();
+var app = express();
 
 var config = require('./server/config/config')[env];
 

@@ -1,3 +1,0 @@
-module.exports={
-    'url' : 'mongodb://safespace:Password123@ds063134.mongolab.com:63134/safespace'
-}
