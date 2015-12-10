@@ -9,21 +9,23 @@ function writeFile(path, file, callback) {
         if(err) { callback(err); }
         var fstream = fs.createWriteStream(path);
 
-        var buffer = file._readableState.buffer[0];
-
-        console.log('Decrypted: ' + buffer);
+        var buffer = file._readableState.buffer[0],
+            test = 'o';
 
         for(var i = 0; i < buffer.length; i++) {
-            buffer[i] = RSA.encrypt(buffer[i], RSAVars.n, RSAVars.e);
+            //var start = String.fromCharCode(parseInt((buffer[i]), 16));
+            //console.log(parseInt(buffer[i], 10));
+            //console.log(start.charCodeAt(0));
+            //console.log("e " + parseInt(buffer[i], 10));
+            buffer[i] = RSA.encrypt( (parseInt(buffer[i], 10)) , RSAVars.n, RSAVars.e);
         }
-
-        console.log('Encrypted: ' + buffer);
+        console.log(buffer.toString());
 
         file.pipe(fstream);
         fstream.on('close', function () {
             callback({success: true});
 
-            readFile('uploads/visual studio code.txt', function() {});
+            readFile('uploads/test.txt', function() {});
         });
     });
 }
@@ -32,16 +34,13 @@ function readFile(path, callback) {
     fs.readFile(path, function(err, data) {
         if(err) { callback(err); }
 
-        var buffer = data;
-
-        console.log('Encrypted: ' + buffer);
+        var buffer = data,
+            decrypted = [];
 
         for(var i = 0; i < buffer.length; i++) {
-            buffer[i] = RSA.decrypt(buffer[i], RSAVars.d, RSAVars.n);
+            decrypted[i] = String.fromCharCode(RSA.decrypt(parseInt(buffer[i], 10), RSAVars.d, RSAVars.n));
         }
-
-        console.log('Decrypted: ' + buffer);
-
+        console.log(decrypted.toString());
         callback(data);
     });
 }
