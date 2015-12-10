@@ -1,0 +1,14 @@
+{
+  "name": "safespaceapi",
+  "version": "1.0.0",
+  "description": "Api for making requests to the safespace data system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api"
+  ],
+  "author": "Taylor Boyd",
+  "license": "ISC"
+}
