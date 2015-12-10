@@ -4,8 +4,8 @@ $.authorize = function(apiKey){
 
 };
 
-$.postFile = function(){
-
+$.postFile = function(file){
+    
 };
 
 $.getFile = function(id){
