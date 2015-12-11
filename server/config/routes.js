@@ -1,5 +1,5 @@
-var fileManager = require('../Utilities/fileManager')
-routes = require('../Controllers/Routing.js');
+var fileManager = require('../Utilities/fileManager'),
+    routes = require('../Controllers/Routing.js');
 
 module.exports = function(app) {
     app.get('/', function(req, res) {
@@ -13,6 +13,10 @@ module.exports = function(app) {
                 res.redirect('/');
             });
         });
+    });
+
+    app.get('/download', function(req, res, next) {
+
     });
 
     app.get('/user/:id', routes.index);

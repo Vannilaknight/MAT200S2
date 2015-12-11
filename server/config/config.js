@@ -11,5 +11,5 @@ module.exports = {
         rootPath: rootPath,
         db: '',
         port: process.env.PORT || 80
-    }
+    },
 };
