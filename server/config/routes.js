@@ -1,4 +1,5 @@
-var fileManager = require('../Utilities/fileManager');
+var fileManager = require('../Utilities/fileManager')
+routes = require('../Controllers/Routing.js');
 
 module.exports = function(app) {
     app.get('/', function(req, res) {
@@ -8,21 +9,15 @@ module.exports = function(app) {
     app.post('/file-upload', function(req, res, next) {
         req.pipe(req.busboy);
         req.busboy.on('file', function(fieldname, file, filename) {
-           fileManager.writeFile(filename, file, function() {
+            fileManager.writeFile('uploads/' + filename, file, function() {
                 res.redirect('/');
-           });
+            });
         });
     });
 
-    app.post('/file-download', function(req, res, next) {
-	    //var path = 'uploads/' + req.query.filename + '.json'; //TODO: Request Filename
-	    var path = 'uploads/test.txt.json';
-	    fileManager.readFile(path, function(file) {
-		    res.setHeader('Content-disposition', file.contentDisposition);
-		    res.setHeader('Content-type', file.contentType);
-		    res.charset = file.charset;
-		    res.write(file.data);
-		    res.end();
-	    });
-    });
+    app.get('/user/:id', routes.index);
+    app.get('/login', routes.login);
+    app.post('/login', routes.loginPost);
+    app.get('/logout', routes.logout);
+    app.get('/', routes.index);
 };
