@@ -22,6 +22,7 @@
     "ejs": "^2.3.4",
     "encryption": "file:server\\Utilities\\Encryption",
     "express": "^4.13.3",
-    "mkdirp": "^0.5.1"
+    "mkdirp": "^0.5.1",
+    "stormpath": "^0.15.1"
   }
 }
