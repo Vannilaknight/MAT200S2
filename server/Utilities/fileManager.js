@@ -2,47 +2,58 @@ var RSA = require('encryption'),
     mkdirp = require('mkdirp'),
     fs = require('fs'),
     getDirName = require('path').dirname,
-    RSAVars = RSA.generate();
+	//RSAVars = RSA.generate(); //TODO: User RSA Variables
+	RSAVars = { n: 1591, e: 191, d: 95 };
 
-function writeFile(path, file, callback) {
+function writeFile(filename, file, callback) {
+	var path = 'uploads/' + filename + '.json';
+
     mkdirp(getDirName(path), function(err) {
-        if(err) { callback(err); }
-        var fstream = fs.createWriteStream(path);
+        if(err) { callback(err); } //TODO: Error Handling
 
-        var buffer = file._readableState.buffer[0],
-            test = 'o';
+        var buffer = file._readableState.buffer[0];
+
+		var eFile = {
+			fileName: filename,
+			contentType: 'text/plain',
+			charset: 'UTF-8',
+			data: []
+		};
 
         for(var i = 0; i < buffer.length; i++) {
-            //var start = String.fromCharCode(parseInt((buffer[i]), 16));
-            //console.log(parseInt(buffer[i], 10));
-            //console.log(start.charCodeAt(0));
-            //console.log("e " + parseInt(buffer[i], 10));
-            buffer[i] = RSA.encrypt( (parseInt(buffer[i], 10)) , RSAVars.n, RSAVars.e);
+           eFile.data[i] = RSA.encrypt(buffer[i], RSAVars.n, RSAVars.e).value;
         }
-        console.log(buffer.toString());
 
-        file.pipe(fstream);
-        fstream.on('close', function () {
-            callback({success: true});
+	    fs.writeFile(path, JSON.stringify(eFile), function(err) {
+		    if(err) { callback(err); } //TODO: Error Handling
 
-            readFile('uploads/test.txt', function() {});
-        });
+		    callback();
+	    });
     });
 }
 
 function readFile(path, callback) {
     fs.readFile(path, function(err, data) {
-        if(err) { callback(err); }
+        if(err) { callback(err); } //TODO: Error Handling
 
-        var buffer = data,
-            decrypted = [];
+        var eFile = JSON.parse(data.toString());
+	    var eFileData = eFile.data;
 
-        for(var i = 0; i < buffer.length; i++) {
-            decrypted[i] = String.fromCharCode(RSA.decrypt(parseInt(buffer[i], 10), RSAVars.d, RSAVars.n));
+	    // Presets for Txt Files
+	    var file = {
+			contentDisposition: 'attachment; filename='+eFile.fileName,
+		    contentType: eFile.contentType,
+		    charset: eFile.charset,
+		    data: ''
+	    };
+
+        for(var i = 0; i < eFileData.length; i++) {
+            file.data += String.fromCharCode(RSA.decrypt(eFileData[i], RSAVars.d, RSAVars.n));
         }
-        console.log(decrypted.toString());
-        callback(data);
+
+        callback(file);
     });
 }
 
 exports.writeFile = writeFile;
+exports.readFile = readFile;
