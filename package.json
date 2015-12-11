@@ -23,6 +23,8 @@
     "encryption": "file:server\\Utilities\\Encryption",
     "express": "^4.13.3",
     "mkdirp": "^0.5.1",
-    "stormpath": "^0.15.1"
+    "mongoose": "^4.2.9",
+    "passport": "^0.3.2",
+    "passport-google-oauth": "^0.2.0"
   }
 }
