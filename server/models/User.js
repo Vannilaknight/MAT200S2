@@ -6,6 +6,7 @@ var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
     id: String,
+    googleId: String,
     username: String,
     password: String,
     email: String,
@@ -14,4 +15,4 @@ var userSchema = new Schema({
     FileDirectory: String
 });
 
-module.exports = mongoose.model('User', userSchema);
+var User = mongoose.model('User', userSchema);
