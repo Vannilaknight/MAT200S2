@@ -14,6 +14,7 @@ module.exports = function() {
         console.log(profile);
         done();
         //User.findOne({googleId: profile.id}.exec(function(err, user) {
+        //    console.log(err.toString());
         //    return done(err, user);
         //}));
     }));

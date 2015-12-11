@@ -20,12 +20,13 @@ module.exports = function(app) {
     app.get('/user/:id', routes.index);
     app.get('/login', auth.authenticateWithGoogle);
     app.get('/auth/google/callback',
-        passport.authenticate('google', { failureRedirect: '/' }),
+        passport.authenticate('google', { failureRedirect: '/authFail' }),
         function(req, res) {
             res.redirect('/');
         });
     app.get('/authFail', function(req, res) {
        console.log('authentication failed');
+        res.redirect('/');
     });
     app.get('/logout', routes.logout);
     app.get('/', routes.index);
