@@ -1,5 +1,5 @@
 //DB stuff goes here
-var User = require('../../Schemas/User');
+var User = require('../models/User');
 
 module.exports ={
     /**
