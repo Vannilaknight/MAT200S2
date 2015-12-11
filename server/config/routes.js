@@ -15,6 +15,10 @@ module.exports = function(app) {
         });
     });
 
+    app.post('/authorize', function(req, res){
+        console.log(req);
+    });
+
     app.get('/user/:id', routes.index);
     app.get('/login', routes.login);
     app.post('/login', routes.loginPost);

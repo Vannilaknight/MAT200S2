@@ -64,8 +64,6 @@ function  testSuccess(){
 
 module.exports =
 {
-
-
     testDB: function(){
         var u = testNewUser();
         testSaveUser(u, [testFindByName, testFindById]);

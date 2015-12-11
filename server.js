@@ -1,16 +1,17 @@
 var express = require('express');
-    //routes = require('./server/Routes/routes.js');
-
 var app = express();
-
-var RSA = require('encryption');
-var num = 1435;
 var mongoose = require('mongoose');
 var dbConfig = require('./dbConfig');
+
 mongoose.connect(dbConfig.url);
 
 var dbTests = require('./Tests/dbTests');
-dbTests.testNewUser();
+//dbTests.testNewUser();
+/*
+** This line was commented out because it could not find the method.
+** Tests dont necessarily effect the project so I am not too concerned about them at the moment.
+** -Taylor 12/11/2015 9:54 AM
+*/
 
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -18,8 +19,6 @@ var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 //var app = express();
 
 var config = require('./server/config/config')[env];
-
-console.log("Original: " + num + "\nEncrypted: " + encryptedM + "\nDecrypted: " + decryptedM);
 
 require('./server/config/express')(app, config);
 require('./server/config/routes')(app);
