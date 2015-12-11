@@ -10,6 +10,8 @@ stormpath_client.getApplication(applicationHref, function(err, application){
 
     clientMethods.init(application);
 
+
+    //testing calls
     //clientMethods.test_CreateUser();
     //clientMethods.test_RetriveUser();
     //clientMethods.test_Auth();

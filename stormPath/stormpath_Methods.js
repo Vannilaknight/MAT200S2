@@ -21,7 +21,6 @@ module.exports={
             if (err) {
                 throw err
             }
-            console.log("")
             createdAccount.createApiKey(function(err, apiKey){
                 console.log('API Key:', apiKey.id);
                 console.log('API Secret:', apiKey.secret);
@@ -63,7 +62,7 @@ module.exports={
         });
     },
 
-    CreatAccound: function(user){
+    CreateAccount: function(user){
         application.createAccount(user, function (err, createdAccount) {
             if (err) {
                 throw err
