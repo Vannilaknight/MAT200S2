@@ -1,5 +1,6 @@
 var RSA = require('encryption'),
     mkdirp = require('mkdirp'),
+	look = require('./CRUD/searchTable'),
     fs = require('fs'),
     getDirName = require('path').dirname,
 	//RSAVars = RSA.generate(); //TODO: User RSA Variables
@@ -33,6 +34,8 @@ function writeFile(filename, file, callback) {
 }
 
 function readFile(path, callback) {
+	//use mongoose to look for Id within the lookup table to grab the path. So instead of path being passed into this method have it be the lookup Id.
+
     fs.readFile(path, function(err, data) {
         if(err) { callback(err); } //TODO: Error Handling
 
@@ -53,7 +56,9 @@ function readFile(path, callback) {
 
         callback(file);
     });
+	//have this function send the file back to the route for downlaoding. Add the headers and then the data part of the response will be this return from this method.
 }
+
 
 exports.writeFile = writeFile;
 exports.readFile = readFile;

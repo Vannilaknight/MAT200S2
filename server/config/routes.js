@@ -1,5 +1,6 @@
 var passport = require('passport'),
     fileManager = require('../Utilities/fileManager'),
+    look = require('../Utilities/CRUD/searchTable.js'),
     auth = require('./auth'),
     routes = require('../Controllers/Routing');
 
@@ -17,8 +18,16 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/download', function(req, res, next) {
-
+    app.post('/download/:id', function(req, res, next) {
+        look.findPath(req.params.id, function(path) {
+            fileManager.readFile(path, function(file) {
+                res.setHeader('Content-disposition', file.contentDisposition);
+                res.setHeader('Content-type', file.contentType);
+                res.charset = file.charset;
+                res.write(file.data, 'binary');
+                res.end();
+            });
+        });
     });
 
     app.get('/user/:id', routes.index);

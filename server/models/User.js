@@ -16,3 +16,13 @@ var userSchema = new Schema({
 });
 
 var User = mongoose.model('User', userSchema);
+
+function createDefaults() {
+    User.find({}).exec(function (err, collection) {
+        if(collection.length === 0) {
+            User.create({id: "1", googleId: '', username: "Dev", password:'1dumbpass', email:'test@test.com', firstName: 'Admin', lastName: '1234', fileDirectory: 'uploads/dev'});
+        }
+    });
+}
+
+exports.defaultUser = createDefaults;
