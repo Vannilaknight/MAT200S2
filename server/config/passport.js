@@ -19,11 +19,13 @@ module.exports = function() {
         //}));
     }));
 
-    passport.serializeUser(function(user, callback){
-        callback(null, user.id);
+    passport.serializeUser(function(user, done) {
+        done(null, user.id);
     });
 
-    passport.deserializeUser(function(user, callback){
-        callback(null, user.id);
+    passport.deserializeUser(function(id, done) {
+        User.findById(id, function(err, user) {
+            done(err, user);
+        });
     });
 };
