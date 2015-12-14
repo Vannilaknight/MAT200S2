@@ -10,12 +10,10 @@ module.exports = function() {
         callbackURL: 'http://localhost:3030/auth/google/callback'
     },
     function(accessToken, refreshToken, profile, done) {
-        console.log(profile);
-        done();
-        //User.findOne({googleId: profile.id}.exec(function(err, user) {
-        //    console.log(err.toString());
-        //    return done(err, user);
-        //}));
+        User.findOne({googleId: profile.id}.exec(function(err, user) {
+            console.log(err.toString());
+            return done(err, user);
+        }));
     }));
 
     passport.serializeUser(function(user, callback){
