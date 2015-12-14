@@ -9,30 +9,33 @@ var RSA = require('encryption'),
 function writeFile(filename, file, uID, callback) {
 	var path = 'uploads/' + uID + '/' + filename + '.json';
 
-    mkdirp(getDirName(path), function(err) {
-        if(err) { callback(err); } //TODO: Error Handling
 
-        file = file._readableState;
+	mkdirp(getDirName(path), function (err) {
+		if (err) { callback(err); } //TODO: Error Handling
 
-	    var buffer = file.buffer[0];
+		file = file._readableState;
+		var buffer = file.buffer[0];
 
-		var eFile = {
-			fileName: filename,
-			contentType: 'text/plain',
-			charset: 'UTF-8',
-			data: []
-		};
+		if(buffer === undefined) { callback(); }
+		else {
+			var eFile = {
+				fileName: filename,
+				contentType: 'text/plain',
+				charset: 'UTF-8',
+				data: []
+			};
 
-        for(var i = 0; i < buffer.length; i++) {
-            eFile.data[i] = RSA.encrypt(buffer[i], RSAVars.n, RSAVars.e).value;
-        }
+			for (var i = 0; i < buffer.length; i++) {
+				eFile.data[i] = RSA.encrypt(buffer[i], RSAVars.n, RSAVars.e).value;
+			}
 
-	    fs.writeFile(path, JSON.stringify(eFile), function(err) {
-		    if(err) { callback(err); } //TODO: Error Handling
+			fs.writeFile(path, JSON.stringify(eFile), function (err) {
+				if (err) { callback(err); } //TODO: Error Handling
 
-		    callback();
-	    });
-    });
+				callback();
+			});
+		}
+	});
 }
 
 function readFile(path, callback) {

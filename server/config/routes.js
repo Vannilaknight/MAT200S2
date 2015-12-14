@@ -26,26 +26,27 @@ module.exports = function(app) {
 
 
     app.post('/fileUpload', function(req, res) {
-            if(req.user) {
-                req.pipe(req.busboy);
-                req.busboy.on('file', function (fieldname, file, filename) {
-                    fileManager.writeFile(filename, file, req.user.googleId, function () {
-                        res.redirect('/profile');
-                    });
+	    if(req.user) {
+            req.pipe(req.busboy);
+            req.busboy.on('file', function (fieldname, file, filename) {
+                fileManager.writeFile(filename, file, req.user.googleId, function () {
+                    res.redirect('/profile');
                 });
-            }
+            });
         }
-    );
+    });
 
     app.get('/fileDownload/:filename', function(req, res) {
-        var path = 'uploads/' + req.user.googleId + '/' + req.params.filename;
-        fileManager.readFile(path, function (file) {
-            res.setHeader('Content-disposition', file.contentDisposition);
-            res.setHeader('Content-type', file.contentType);
-            res.charset = file.charset;
-            res.write(file.data);
-            res.end();
-        });
+	    if(req.user) {
+		    var path = 'uploads/' + req.user.googleId + '/' + req.params.filename;
+		    fileManager.readFile(path, function (file) {
+			    res.setHeader('Content-disposition', file.contentDisposition);
+			    res.setHeader('Content-type', file.contentType);
+			    res.charset = file.charset;
+			    res.write(file.data);
+			    res.end();
+		    });
+	    }
     });
 
     app.get('/login', auth.authenticateWithGoogle);
@@ -53,7 +54,8 @@ module.exports = function(app) {
         passport.authenticate('google', { failureRedirect: '/authFail' }),
         function(req, res) {
             res.redirect('/profile');
-        });
+        }
+    );
     app.get('/authFail', function(req, res) {
        console.log('Google authentication failed');
         res.redirect('/');
