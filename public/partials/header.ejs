@@ -9,10 +9,15 @@
       <!-- Navigation. We hide it in small screens. -->
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         <form method="post" enctype="multipart/form-data" action="/fileUpload">
-          <input id="testFile" name="testFile" type="file" />
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
+            <input class="mdl-textfield__input" placeholder="File" type="text" id="uploadFile" readonly/>
+            <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">
+              <i class="material-icons fileUploadSon">file_upload</i><input type="file" id="uploadBtn">
+            </div>
+          </div>
           <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect upload-btn" type="submit" value="Upload File" />
         </form>
-        <a class="mdl-navigation__link" href="/logout">Logout</a>
+        <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect logout-btn" href="/logout">Logout</a>
       </nav>
     </div>
   </header>

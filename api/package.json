@@ -10,5 +10,8 @@
     "api"
   ],
   "author": "Taylor Boyd",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.67.0"
+  }
 }

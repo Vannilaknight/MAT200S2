@@ -4,7 +4,8 @@
   "description": "Better than the cloud",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm install && nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -26,7 +27,7 @@
     "express-session": "^1.12.1",
     "material-design-lite": "^1.0.6",
     "mkdirp": "^0.5.1",
-    "mongoose": "^4.2.9",
+    "mongoose": "^4.3.1",
     "passport": "^0.3.2",
     "passport-google-oauth": "^0.2.0"
   }
