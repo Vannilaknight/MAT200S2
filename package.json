@@ -22,6 +22,7 @@
     "ejs": "^2.3.4",
     "encryption": "file:server\\Utilities\\Encryption",
     "express": "^4.13.3",
+    "material-design-lite": "^1.0.6",
     "mkdirp": "^0.5.1",
     "mongoose": "^4.2.9",
     "passport": "^0.3.2",

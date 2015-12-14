@@ -8,7 +8,27 @@ module.exports = function(app) {
         res.render('fileUploadTest.html');
     });
 
-    app.post('/file-upload', function(req, res, next) {
+    app.get('/profile', function(req, res) {
+        res.render('app/account/profile.ejs', {
+            profileInfo: {
+                name: 'jleininger'
+            }
+        });
+    });
+
+    app.get('/:user/getFileList', function(req, res) {
+        console.log('Getting file list');
+        res.contentType('json');
+        res.send({
+            files: [
+                'expense report.txt',
+                'diploma.txt',
+                'otherReport.txt'
+            ]
+        });
+    });
+
+    app.post('/fileUpload', function(req, res, next) {
         req.pipe(req.busboy);
         req.busboy.on('file', function(fieldname, file, filename) {
            fileManager.writeFile('uploads/' + filename, file, function() {
