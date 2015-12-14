@@ -109,4 +109,4 @@ module.exports ={
         DeleteUserById: function(id, successCallback, failCallback){
             console.warn("delete by ID is not yet Implemented.");
         }
-}
+};
