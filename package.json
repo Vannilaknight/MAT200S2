@@ -20,6 +20,7 @@
     "body-parser": "^1.14.1",
     "connect-busboy": "0.0.2",
     "cookie-parser": "^1.4.0",
+    "dir-util": "0.0.3",
     "ejs": "^2.3.4",
     "encryption": "file:server\\Utilities\\Encryption",
     "express": "^4.13.3",
@@ -28,6 +29,7 @@
     "mkdirp": "^0.5.1",
     "mongoose": "^4.2.9",
     "passport": "^0.3.2",
-    "passport-google-oauth": "^0.2.0"
+    "passport-google-oauth": "^0.2.0",
+    "stormpath": "^0.15.1"
   }
 }
