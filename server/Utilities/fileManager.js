@@ -72,8 +72,9 @@ function readFileSize(path){
 		if(err) {
 			console.log("Could not read directory/path.");
 		}else{
-			console.log(dir.to(size, options.unit), options.unit);
-			//return dir.to(size, options.unit)
+			var size = dir.to(size, options.unit);
+			//console.log(size + options.unit);
+			return dir.to(size + " " + options.unit)
 		}
 	});
 }
