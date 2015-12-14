@@ -1,6 +1,10 @@
 var File = React.createClass({
-   render: function() {
-       var file = this.props.file;
+    cleanFileName: function(file) {
+        return file.substr(0, file.lastIndexOf('.')) || file;
+    },
+    render: function() {
+       var file = this.cleanFileName(this.props.file),
+           fileDownloadPath = '/fileDownload/' + this.props.file;
        return (
            <div className="demo-card-event mdl-card mdl-shadow--2dp">
                <div className="mdl-card__title mdl-card--expand">
@@ -9,7 +13,7 @@ var File = React.createClass({
                    </h4>
                </div>
                <div className="mdl-card__actions mdl-card--border">
-                   <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                   <a href={fileDownloadPath} className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                        Download
                    </a>
                    <div className="mdl-layout-spacer"></div>
@@ -17,7 +21,7 @@ var File = React.createClass({
                </div>
            </div>
        );
-   }
+    }
 });
 
 var Profile = React.createClass({
@@ -52,7 +56,6 @@ var Profile = React.createClass({
        return (
            <div className="file-browser">
                <h1>Your Files</h1>
-               <p>Browse through all your personal files here.</p>
                {this.state.fileElements}
            </div>
        );

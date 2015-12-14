@@ -57,5 +57,10 @@ function readFile(path, callback) {
     });
 }
 
+function readFileNamesInDir(path) {
+    return fs.readdirSync(path);
+}
+
 exports.writeFile = writeFile;
 exports.readFile = readFile;
+exports.readFileNamesInDir = readFileNamesInDir;
