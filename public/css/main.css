@@ -9,21 +9,26 @@
     margin: 10px 20px 10px 0;
     display: inline-block;
 }
+
 .demo-card-event > .mdl-card__actions {
     border-color: rgba(255, 255, 255, 0.2);
 }
+
 .demo-card-event > .mdl-card__title {
     align-items: flex-start;
     height: 75%;
 }
+
 .demo-card-event > .mdl-card__title > h4 {
     margin-top: 0;
 }
+
 .demo-card-event > .mdl-card__actions {
     display: flex;
-    box-sizing:border-box;
+    box-sizing: border-box;
     align-items: center;
 }
+
 .demo-card-event > .mdl-card__title,
 .demo-card-event > .mdl-card__actions,
 .demo-card-event > .mdl-card__actions > .mdl-button {
@@ -32,6 +37,13 @@
 
 .upload-btn {
     background-color: #8BC349;
+    margin-left: 50px;
+}
+
+.logout-btn {
+    background-color: #8BC349;
+    margin-left: 50px;
+    margin-top: 3px;
 }
 
 .image-container {
@@ -72,4 +84,30 @@
 .image-container .after p {
     font-size: 1.5em;
     margin-bottom: 60px;
+}
+
+.fileUploadSon {
+    color: #8BC349;
+}
+
+.mdl-button--file input {
+    cursor: pointer;
+    height: 100%;
+    right: 0;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    width: 300px;
+    z-index: 4;
+    margin-right: 50px;
+}
+
+.mdl-textfield--file .mdl-textfield__input {
+    box-sizing: border-box;
+    width: calc(100% - 32px);
+    border-color: #8BC349;
+}
+
+.mdl-textfield--file .mdl-button--file {
+    right: 0;
 }
