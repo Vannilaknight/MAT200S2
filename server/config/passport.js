@@ -3,7 +3,6 @@ var passport = require('passport'),
     GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
     User = mongoose.model('User');
 
-//TODO: Add the client secret in when available
 module.exports = function() {
     passport.use(new GoogleStrategy({
         clientID: '438135364786-l38cg3n12f9mm0bl656n53gq831gq2k9.apps.googleusercontent.com',
@@ -11,16 +10,34 @@ module.exports = function() {
         callbackURL: 'http://localhost:3030/auth/google/callback'
     },
     function(accessToken, refreshToken, profile, done) {
-        console.log(profile);
-        done();
-        //User.findOne({googleId: profile.id}.exec(function(err, user) {
-        //    console.log(err.toString());
-        //    return done(err, user);
-        //}));
+        User.findOne({
+            'googleId': profile.id
+        }, function(err, user) {
+            if (err) {
+                return done(err);
+            }
+            //No user was found... so create a new user with values from Google
+            if (!user) {
+                user = new User({
+                    googleId: profile.id,
+                    username: profile.displayName,
+                    email: profile.emails[0].value,
+                    firstName: profile.name.givenName,
+                    lastName: profile.name.familyName,
+                    google: profile._json
+                });
+                user.save(function(err) {
+                    if (err) console.log(err);
+                    return done(err, user);
+                });
+            } else {
+                return done(err, user);
+            }
+        })
     }));
 
     passport.serializeUser(function(user, done) {
-        done(null, user.id);
+        done(null, user._id);
     });
 
     passport.deserializeUser(function(id, done) {
