@@ -26,7 +26,8 @@ module.exports = function(app) {
     app.get('/:user/getFileList', function(req, res) {
         res.contentType('json');
         res.send({
-            files: fileManager.readFileNamesInDir('uploads/' + req.user.googleId)
+            files: fileManager.readFileNamesInDir('uploads/' + req.user.googleId),
+            size: fileManager.readFileSize('uploads/'+req.user.googleId)
         });
     });
 
