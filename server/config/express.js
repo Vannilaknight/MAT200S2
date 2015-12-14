@@ -1,4 +1,6 @@
 var express = require('express'),
+    passport = require('passport'),
+    session = require('express-session'),
     bodyParser = require('body-parser'),
     ejs = require('ejs'),
     busboy = require('connect-busboy');
@@ -10,4 +12,7 @@ module.exports = function(app, config) {
     app.use(express.static('public'));
     app.use(bodyParser());
     app.use(busboy());
+    app.use(session({ secret: 'Kim Jong Un riding a unicorn' }));
+    app.use(passport.initialize());
+    app.use(passport.session());
 };

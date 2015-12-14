@@ -10,10 +10,30 @@ module.exports = function() {
         callbackURL: 'http://localhost:3030/auth/google/callback'
     },
     function(accessToken, refreshToken, profile, done) {
-        User.findOne({googleId: profile.id}.exec(function(err, user) {
-            console.log(err.toString());
-            return done(err, user);
-        }));
+        User.findOne({
+            'googleId': profile.id
+        }, function(err, user) {
+            if (err) {
+                return done(err);
+            }
+            //No user was found... so create a new user with values from Google
+            if (!user) {
+                user = new User({
+                    googleId: profile.id,
+                    username: profile.displayName,
+                    email: profile.emails[0].value,
+                    firstName: profile.name.givenName,
+                    lastName: profile.name.familyName,
+                    google: profile._json
+                });
+                user.save(function(err) {
+                    if (err) console.log(err);
+                    return done(err, user);
+                });
+            } else {
+                return done(err, user);
+            }
+        })
     }));
 
     passport.serializeUser(function(user, done) {
