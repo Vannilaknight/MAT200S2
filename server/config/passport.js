@@ -3,7 +3,6 @@ var passport = require('passport'),
     GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
     User = mongoose.model('User');
 
-//TODO: Add the client secret in when available
 module.exports = function() {
     passport.use(new GoogleStrategy({
         clientID: '438135364786-l38cg3n12f9mm0bl656n53gq831gq2k9.apps.googleusercontent.com',

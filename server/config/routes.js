@@ -5,7 +5,7 @@ var passport = require('passport'),
 
 module.exports = function(app) {
     app.get('/', function(req, res) {
-        res.render('fileUploadTest.html');
+        res.render('app/general/landing-page.ejs');
     });
 
     app.get('/profile', function(req, res) {
@@ -17,7 +17,7 @@ module.exports = function(app) {
     });
 
     app.get('/:user/getFileList', function(req, res) {
-        console.log('Getting file list');
+        //TODO: This is all test stuff. Replace with real stuff later.
         res.contentType('json');
         res.send({
             files: [
@@ -49,5 +49,4 @@ module.exports = function(app) {
         res.redirect('/');
     });
     app.get('/logout', routes.logout);
-    app.get('/', routes.index);
 };
