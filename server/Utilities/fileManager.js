@@ -1,7 +1,6 @@
 var RSA = require('encryption'),
     mkdirp = require('mkdirp'),
     fs = require('fs'),
-	dir = require('dir-util'),
     getDirName = require('path').dirname,
 	//RSAVars = RSA.generate(); //TODO: User RSA Variables
 	RSAVars = { n: 1591, e: 191, d: 95 };
@@ -63,20 +62,14 @@ function readFileNamesInDir(path) {
 }
 
 function readFileSize(path){
-	var options = {
-		filters: [],
-		unit: 'kb'
-	};
-
-	dir.getSize(path, options, function(err, size){
-		if(err) {
-			console.log("Could not read directory/path.");
-		}else{
-			var size = dir.to(size, options.unit);
-			//console.log(size + options.unit);
-			return dir.to(size + " " + options.unit)
-		}
-	});
+	var list = readFileNamesInDir(path),
+	total = 0;
+	list.forEach(function(item){
+		var stats = fs.statSync(path+"/"+item);
+		console.log(stats);
+		total += stats.size;
+	})
+	return (total/1000000.0)+"Mb";
 }
 
 exports.writeFile = writeFile;
