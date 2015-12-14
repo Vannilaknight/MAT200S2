@@ -5,13 +5,15 @@ var RSA = require('encryption'),
 	//RSAVars = RSA.generate(); //TODO: User RSA Variables
 	RSAVars = { n: 1591, e: 191, d: 95 };
 
-function writeFile(filename, file, callback) {
-	var path = 'uploads/' + filename + '.json';
+function writeFile(filename, file, uID, callback) {
+	var path = 'uploads/' + uID + '/' + filename + '.json';
 
     mkdirp(getDirName(path), function(err) {
         if(err) { callback(err); } //TODO: Error Handling
 
-        var buffer = file._readableState.buffer[0];
+        file = file._readableState;
+
+	    var buffer = file.buffer[0];
 
 		var eFile = {
 			fileName: filename,
@@ -21,7 +23,7 @@ function writeFile(filename, file, callback) {
 		};
 
         for(var i = 0; i < buffer.length; i++) {
-           eFile.data[i] = RSA.encrypt(buffer[i], RSAVars.n, RSAVars.e).value;
+            eFile.data[i] = RSA.encrypt(buffer[i], RSAVars.n, RSAVars.e).value;
         }
 
 	    fs.writeFile(path, JSON.stringify(eFile), function(err) {
