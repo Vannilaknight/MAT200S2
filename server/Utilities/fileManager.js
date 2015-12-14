@@ -61,6 +61,11 @@ function readFileNamesInDir(path) {
     return fs.readdirSync(path);
 }
 
+function deleteFile(path) {
+	fs.unlinkSync(path);
+}
+
+exports.deleteFile = deleteFile;
 exports.writeFile = writeFile;
 exports.readFile = readFile;
 exports.readFileNamesInDir = readFileNamesInDir;

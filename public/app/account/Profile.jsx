@@ -2,11 +2,21 @@ var File = React.createClass({
     cleanFileName: function(file) {
         return file.substr(0, file.lastIndexOf('.')) || file;
     },
+    deleteFile: function(path) {
+        console.log(path);
+        $.ajax({
+            url: '/' + path,
+            type: 'DELETE',
+            dataType: 'json',
+            complete: function(response) { console.log(response); window.location.reload(); }
+        });
+    },
     render: function() {
        var file = this.cleanFileName(this.props.file),
            fileDownloadPath = '/fileDownload/' + this.props.file;
        return (
            <div className="demo-card-event mdl-card mdl-shadow--2dp">
+
                <div className="mdl-card__title mdl-card--expand">
                    <h4>
                        {file}
@@ -17,7 +27,9 @@ var File = React.createClass({
                        Download
                    </a>
                    <div className="mdl-layout-spacer"></div>
-                   <i className="material-icons">description</i>
+                   <div className="mdl-button mdl-js-button mdl-button--icon delRight">
+                       <i className="material-icons" onClick={this.deleteFile.bind(this, this.props.file)}>delete</i>
+                   </div>
                </div>
            </div>
        );

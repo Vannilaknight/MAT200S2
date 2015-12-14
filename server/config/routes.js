@@ -8,6 +8,13 @@ module.exports = function(app) {
         res.render('app/general/landing-page.ejs');
     });
 
+    app.delete('/:path', function(req,res) {
+        var path = 'uploads/' + req.user.googleId + '/' + req.params.path;
+        fileManager.deleteFile(path);
+        res.status(200);
+        res.end();
+    }),
+
     app.get('/profile', function(req, res) {
         res.render('app/account/profile.ejs', {
             profileInfo: {
