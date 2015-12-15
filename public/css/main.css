@@ -129,3 +129,25 @@
 .mdl-button--fab.mdl-button--colored:hover {
     background-color: #55742e;
 }
+
+.file-size-display {
+    background-color: #3F51B5;
+    border-radius: 100%;
+    bottom: 50px;
+    right: 30px;
+    color: #fff;
+    position: fixed;
+    text-align: center;
+    height: 130px;
+    width: 130px;
+}
+
+.file-size-display p, h5 {
+    margin: 0;
+}
+
+.file-size-display .middle-container {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}

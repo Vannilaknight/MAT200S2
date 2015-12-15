@@ -1,3 +1,17 @@
+var SizeDisplay = React.createClass({
+    render: function() {
+        return (
+            <div className="file-size-display">
+                <div className="middle-container">
+                    <p>You've used</p>
+                    <h5>{this.props.totalSize}</h5>
+                    <p>in file storage.</p>
+                </div>
+            </div>
+        );
+    }
+});
+
 var File = React.createClass({
     cleanFileName: function(file) {
         return file.substr(0, file.lastIndexOf('.')) || file;
@@ -40,6 +54,7 @@ var Profile = React.createClass({
     getInitialState: function() {
         return {
             userFiles: [],
+            totalUserStorage: '0 Mb',
             fileElements: []
         }
     },
@@ -47,7 +62,8 @@ var Profile = React.createClass({
         $.get(this.props.fileSource, function(result) {
             if (this.isMounted()) {
                 this.setState({
-                    userFiles: result.files
+                    userFiles: result.files,
+                    totalUserStorage: result.size
                 });
 
                 this.buildFileElements(this.state.userFiles);
@@ -66,13 +82,16 @@ var Profile = React.createClass({
     },
     render: function() {
        return (
-           <div className="file-browser">
-               <h1>Your Files</h1>
-               {this.state.fileElements}
+           <div>
+               <div className="file-browser">
+                   <h1>Your Files</h1>
+                   {this.state.fileElements}
+               </div>
+               <SizeDisplay totalSize={this.state.totalUserStorage} />
            </div>
        );
     }
 });
 
-ReactDOM.render(<Profile fileSource="/jleininger/getFileList" />, document.getElementById('pageContent'));
+ReactDOM.render(<Profile fileSource="/getFileList" />, document.getElementById('pageContent'));
 

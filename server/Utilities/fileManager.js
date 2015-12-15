@@ -73,10 +73,9 @@ function readFileSize(path){
 	total = 0;
 	list.forEach(function(item){
 		var stats = fs.statSync(path+"/"+item);
-		console.log(stats);
 		total += stats.size;
-	})
-	return (total/1000000.0)+"Mb";
+	});
+	return (total/1000000.0)+"MB";
 }
 
 exports.deleteFile = deleteFile;

@@ -13,7 +13,7 @@
                         <div class="file_input">
                             <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
                                 <i class="material-icons">attach_file</i>
-                                <input id="file_input_file" name="testFile" class="none" type="file"/>
+                                <input id="file_input_file" name="testFile" class="none" type="file" />
                             </label>
                         </div>
                         <div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect upload-btn"
-                           type="submit" value="Upload File"/>
+                           type="submit" value="Upload File" disabled />
                 </form>
                 <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect logout-btn" href="/logout">Logout</a>
             </nav>
@@ -32,10 +32,7 @@
     <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">Options</span>
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="/logout">Logout</a>
         </nav>
     </div>
     <script>
@@ -67,5 +64,19 @@
                 }
             }
         }
+
+        $(document).ready(
+                function(){
+                    $('input:submit').attr('disabled',true);
+                    $('input:file').change(
+                            function(){
+                                if ($(this).val()){
+                                    $('input:submit').removeAttr('disabled');
+                                }
+                                else {
+                                    $('input:submit').attr('disabled',true);
+                                }
+                            });
+                });
     </script>
 </div>

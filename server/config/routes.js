@@ -13,7 +13,7 @@ module.exports = function(app) {
         fileManager.deleteFile(path);
         res.status(200);
         res.end();
-    }),
+    });
 
     app.get('/profile', function(req, res) {
         res.render('app/account/profile.ejs', {
@@ -23,7 +23,7 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/:user/getFileList', function(req, res) {
+    app.get('/getFileList', function(req, res) {
         res.contentType('json');
         res.send({
             files: fileManager.readFileNamesInDir('uploads/' + req.user.googleId),
